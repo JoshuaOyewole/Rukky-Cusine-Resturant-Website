@@ -9,6 +9,7 @@ const Form = () => {
   const [message, setMessage] = useState('')
   const [subject, setSubject] = useState('')
 
+  /* Handle Form Submission */
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await addDoc(collection(firestore, "Contact"), { name, email, message, subject });

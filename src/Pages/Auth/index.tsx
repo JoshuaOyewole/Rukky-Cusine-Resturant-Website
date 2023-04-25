@@ -2,7 +2,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Cheff1 } from "../../components/Assets";
 import {
-  // GithubAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
