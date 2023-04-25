@@ -1,4 +1,4 @@
-import { FoodItem, cartItem } from "../../types";
+import { FoodItem, cartItem, User } from "../../types";
 import {
   firebaseAddToCart,
   firebaseDeleteCartItem,
@@ -15,11 +15,12 @@ import {
 
 import { MdShoppingBasket } from "react-icons/md";
 import { toast } from "react-toastify";
+import { DocumentData } from "firebase/firestore";
 
 export const addToCart = async (
   cartItems: cartItem[],
   foodItems: FoodItem[],
-  user: any,
+  user: User,
   fid: number,
   dispatch: any
 ) => {
@@ -64,7 +65,7 @@ export const dispatchtUserCartItems = (
   return cartItems;
 };
 
-export const fetchUserCartData = async (user: any, dispatch: any) => {
+export const fetchUserCartData = async (user: DocumentData, dispatch: any) => {
   if (user) {
     await firebaseFetchAllCartItems()
       .then((data) => {
@@ -227,7 +228,7 @@ export const hideContactform = (dispatch: any) => {
   });
 };
 
-export const shuffleItems = (items: any) => {
+export const shuffleItems = (items: cartItem[]) => {
   let currentIndex = items.length,
     randomIndex;
 
@@ -287,19 +288,20 @@ export const ToggleAdminMode = (dispatch: any, state: boolean) => {
   console.log(state);
 };
 
-export const isAdmin = (user: any) => {
-  let isAdmin =user?.email === "bentilshadrack72@gmail.com" || user?.email === "admin@test.com"
+/* CHECK IF A USER IS AN ADMIN */
+export const isAdmin = (user: User) => {
+  let isAdmin =user?.email === "rukkycuisine@gmail.com" || user?.email === "admin@test.com"
   return isAdmin
 };
 
 // get user
-export const getUserData = async (user: any) => {
+export const getUserData = async (user: User) => {
   return await firebaseGetUser(user.uid);
 };
 
 // update currentUser
 export const updateUserData = async (
-  user: any,
+  user: User,
   dispatch: any,
   alert: boolean
 ) => {
@@ -322,7 +324,7 @@ export const updateUserData = async (
 // get all users
 export const dispatchUsers = async (dispatch: any) => {
   await firebaseGetAllUsers()
-    .then((users: any) => {
+    .then((users: DocumentData) => {
       dispatch({
         type: "SET_USERS",
         users: users,
@@ -333,7 +335,7 @@ export const dispatchUsers = async (dispatch: any) => {
     }); 
 }
 export const getAllUser = async() => {
-   await firebaseGetAllUsers().then((users: any) => {
+   await firebaseGetAllUsers().then((users: DocumentData) => {
     return users
    }).catch((e:any) => {
     console.log(e)
