@@ -1,21 +1,21 @@
 export type foodItemStatic = {
-  id: number;
+  _id: number;
   title: string;
   desc: string;
-  price: string;
+  price: number;
   imgSrc: string;
 }
 export type foodItemsStatic = {
   items: foodItemStatic[];
 }
 export type FoodItem = {
-    id: number;
+    _id: string;
     title: string;
     description?: string;
-    price: string;
+    price: number;
     imageURL: string;
     calories: string;
-    qty: string;
+    qty: number;
     category: string;
 };
 
@@ -24,15 +24,16 @@ export type FoodItems = {
 }
 
 export type FoodCategory = {
-  id: number;
+  _id: number;
   name: string;
   urlParam: string;
   icon?: JSX.Element
 }
 
 export type cartItem = {
-  id: number;
-  fid: number;
+  _id?:string,
+  id:number,
+  fid: string;
   uid: string;
   qty: number;
 }
