@@ -1,4 +1,3 @@
-import { firebaseGetAllUsers } from "../Firebase";
 
 export const fetchSessionUser = () => {
   const user =
