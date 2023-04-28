@@ -10,7 +10,7 @@ export const SingleFoodItem = ({
   col?: boolean;
   admin?:boolean
 }) => {
-  const { id, title, price, calories, imageURL, description } = item;
+  const { title, price, calories, imageURL, description } = item;
 
   return (
     <motion.div
@@ -37,7 +37,7 @@ export const SingleFoodItem = ({
       {admin && (<p className="mt-1 text-sm text-gray-500">{calories} calories </p>)}
         <div className="flex items-center justify-between gap-8 ">
           <p className="text-base text-headingColor font-semibold">
-            <span className="text-sm text-red-600">₵</span> {price}
+            <span className="text-sm text-red-600">&#8358;</span> {price}
           </p>
         </div>
       </div>
