@@ -13,6 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
   const EmailAuth = () => {
     if (!user) {
       if (email.length > 0 && password.length > 0) {
@@ -23,9 +24,9 @@ const Login = () => {
             success: "Signin successful: WELCOME!",
             error: "Error signing account, Please try again🤗",
           }
-        ).then((userData) => {
+        ).then((res) => {
           // Signed in
-          const user = userData[0]; 
+          const user = res; 
           dispatch({
             type: "SET_USER",
             user: user,
