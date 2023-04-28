@@ -1,6 +1,6 @@
 import React from "react";
 export type FoodCategory = {
-  id: number;
+  _id: number;
   name: string;
   urlParam: string;
 };

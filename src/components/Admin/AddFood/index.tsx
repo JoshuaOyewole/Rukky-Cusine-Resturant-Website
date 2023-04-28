@@ -8,9 +8,8 @@ import {
   MdOutlineProductionQuantityLimits,
 } from "react-icons/md";
 import {
-  firebaseFetchFoodItems,
   firebaseRemoveUploadedImage,
-  firebaseSaveProduct,
+  saveProduct,
 } from "../../../Firebase";
 
 import { Categories } from "../../../utils/categories";
@@ -58,7 +57,7 @@ const AddFood = () => {
           qty: quantity,
         };
         toast
-          .promise(firebaseSaveProduct(data), {
+          .promise(saveProduct(data), {
             pending: "Saving Product...",
             success: "Product saved successfully",
             error: "Error saving product, Please try again🤗",
@@ -69,13 +68,12 @@ const AddFood = () => {
             fetchFoodData(dispatch);
           })
           .catch((error) => {
-            console.log(error);
+            throw error;
           });
         setLoadermessage("");
         setLoading(false);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Error whilesaving product");
     }
   };

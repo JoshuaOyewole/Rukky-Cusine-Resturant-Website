@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useStateValue } from "../../../context/StateProvider";
 
 const Menu = () => {
-    const [{ foodItems }, dispatch] = useStateValue();
+    const [{ foodItems }] = useStateValue();
     const [query, setQuery] = useState("");
     const [filteredFoodItems, setFilteredFoodItems] = useState<FoodItem[]>(foodItems);
     
@@ -40,7 +40,7 @@ const Menu = () => {
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
         {
             filteredFoodItems.map((item: FoodItem) => (
-                <SingleFoodItem key={item.id} item={item} col admin />
+                <SingleFoodItem key={item._id} item={item} col admin />
             ))
         }
       </div>
