@@ -1,7 +1,9 @@
 import { useStateValue } from "../../context/StateProvider";
 import { CreditCard, MOMO } from "../Assets";
+
 const Selector = () => {
   const [{paymentMethod}, dispatch] = useStateValue();
+
   const setPaymentMethod = (method:string) => {
     dispatch({
       type: "SET_PAYMENT_METHOD",
