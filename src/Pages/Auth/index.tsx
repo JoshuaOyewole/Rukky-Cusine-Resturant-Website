@@ -30,6 +30,8 @@ const ProviderAuth = () => {
           error: "Error Signing in, Please try again🤗",
         })
         .then(({ refreshToken, userData }) => {
+          console.log(refreshToken);
+          
           // Signed in
           const user = userData[0];
           // const userData = getUserData(user);

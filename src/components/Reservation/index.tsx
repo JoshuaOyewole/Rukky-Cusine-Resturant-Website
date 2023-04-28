@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react"
+import { toast } from "react-toastify";
 import { Title } from "../Sections"
 
 type CredentialProps = {
@@ -6,7 +8,7 @@ type CredentialProps = {
     time: React.HTMLInputTypeAttribute,
     persons: number
 }
-function ReserveTable() {
+const Reservation = () => {
     const date = new Date().toDateString();
 
     const [reservationInfo, setReservationInfo] = useState<CredentialProps>({} as CredentialProps);
@@ -18,9 +20,14 @@ function ReserveTable() {
         })
     }
 
-    const handleBooking = () => {
+    const handleBooking = async () => {
         /* Send the Reservation Details to the DB */
-        console.log(reservationInfo);
+        try {
+            const res = await axios.post("http://localhost:3100/api/reservation", reservationInfo);
+            toast.success(res.data)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -52,7 +59,7 @@ function ReserveTable() {
                     <div className="mb-6 basis-[23%]">
                         <input
                             type="number"
-                            name="person"
+                            name="persons"
                             value={reservationInfo.persons}
                             className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
                             placeholder="2 Persons"
@@ -74,4 +81,4 @@ function ReserveTable() {
     )
 }
 
-export default ReserveTable
+export default Reservation

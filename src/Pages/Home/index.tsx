@@ -1,5 +1,6 @@
-import {FruitsSection, MenuSection, ShowcaseBanner, } from "../../components";
-import ReserveTable from "../../components/ReserveTable/index"
+import {FruitsSection, MenuSection, ShowcaseBanner} from "../../components";
+import Reservation from "../../components/Reservation";
+
 
 const Home = () => {
   return (
@@ -7,7 +8,7 @@ const Home = () => {
       <ShowcaseBanner />
       <MenuSection />
       <FruitsSection />
-      <ReserveTable />
+      <Reservation />
      {/*  <Blog /> */}
     </div>
 

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // import { motion } from "framer-motion";
 import { useState } from "react";
 import { useStateValue } from "../../context/StateProvider";
-import { EMAILSIGNUP, firebaseAddUser } from "../../Firebase";
+import { EMAILSIGNUP, addUser } from "../../Firebase";
 
 // toast.configure()
 
@@ -14,8 +14,10 @@ const Login = () => {
   const [{ user }, dispatch] = useStateValue();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const EmailAuth = () => {
+
     if (!user) {
       if (email.length > 0 && password.length > 0) {
         toast.promise(
@@ -25,10 +27,11 @@ const Login = () => {
             success: "Signup successful: WELCOME!",
             error: "Error Creating account, Please try again🤗",
           }
-        ).then((userCredential) => {
+        ).then((response) => {
           // Signed in
-          const user = userCredential.user.providerData[0];
-          firebaseAddUser(user);
+          const user = response.data.data;
+
+          addUser(user);
           dispatch({
             type: "SET_USER",
             user: user,
@@ -38,7 +41,8 @@ const Login = () => {
         }
         ).catch((error) => {
           // const errorCode = error.code;
-          const errorMessage = error.message;
+          const errorMessage = error.response.data.message;
+
           toast.error(errorMessage, { autoClose: 15000 });
         }
         );
@@ -53,10 +57,10 @@ const Login = () => {
     <section className="w-full h-auto">
       <div className="container md:py-10 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-        <ImageBox />
+          <ImageBox />
           <div className="w-full md:w-[30rem]">
             <form className="p-2">
-            <ProviderAuth />
+              <ProviderAuth />
               <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                 <p className="text-center text-textColor text-sm font-semibold mx-4 mb-0">
                   OR
@@ -64,8 +68,9 @@ const Login = () => {
               </div>
               <div className="mb-6">
                 <input
-                  type="text"
+                  type="email"
                   className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
+                  required
                   placeholder="Email address"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -76,6 +81,7 @@ const Login = () => {
                   type="password"
                   className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
                   placeholder="Password"
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>

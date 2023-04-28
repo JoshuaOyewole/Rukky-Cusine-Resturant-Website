@@ -30,13 +30,14 @@ const Left = () => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           className="bg-[#941b0c] w-50%] text-white   md:w-auto px-4 py-3 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100 md:mr-8"
-          onClick={() => { navigate('#reserveTable') }}
-        >
+          onClick={() => navigate('/#reserveTable')}
+        > 
           Reserve a Table
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.1 }}
           className="bg-gradient-to-br w-[45%] text-white from-[#f6aa1c] to-[#941b0c]  md:w-auto px-4 py-3 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100"
+          onClick={()=>navigate('/menu')}
         >
           See our Menus
         </motion.button>

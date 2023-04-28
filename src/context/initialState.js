@@ -5,7 +5,7 @@ const sessionUserMode = fetchSessionUserMode();
 
 export const initialState = {
     user: sessionUser,
-    foodItems: null,
+    foodItems: [],
     showCart: false,
     showContactForm: false,
     cartItems: [],
